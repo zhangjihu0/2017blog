@@ -6,7 +6,7 @@
 
 安装依赖的模块；
 
-yarn add 
+yarn add --S
  
     "async": "^2.5.0",
     "body-parser": "^1.17.2",
@@ -24,16 +24,15 @@ yarn add
 
 1. git init 
 2. git add -A
-3. git commit -m "1.初始化项
-# 目和依赖的模块" 
+3. git commit -m "1.初始化项目和依赖的模块" 
 4. git remote add origin https://github.com/zhangjihu0/2017blog.git
 5. git push origin master
 ...
 
 # 创建服务
 ```
-  express + mongoose
-   javascript
+express + mongoose
+javascript
 let express = require('express');
 let app = express();
 app.listen(8080);
