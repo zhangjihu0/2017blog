@@ -1,12 +1,12 @@
 let express = require('express');
 let router = express.Router();
 router.get('/signUp',function(req,res){
-    res.send('用户注册')
+    res.render('user/signUp',{title:"注册"})
 });
 router.get('/signIn',function(req,res){
-    res.send('用户登陆')
+    res.render('user/signIn',{title:"登录"})
 });
 router.get('/signOut',function(req,res){
-    res.send('用户登陆')
+    res.render('user/signOut',{title:"登出"})
 });
 module.exports = router;

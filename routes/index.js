@@ -3,6 +3,8 @@ let express = require('express');
 let router = express.Router();
 
 router.get('/',function(req,res){
-    res.send('首页');
+    // res.send('首页');
+    // 路由是相对的路径，相对于模板根目录
+    res.render('index',{title:'首页'})
 });
 module.exports = router;
