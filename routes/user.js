@@ -10,13 +10,15 @@ let router = express.Router();
 router.get('/signUp',function(req,res){
     res.render('user/signUp',{title:"注册"})
 });
-router.post('/signUp',function(req,res){
+router.post('/signUp',function(req,res){ 
     //post 返回值用body 接收；
      let user = req.body; 
      User.create(user,function(err,doc){
       if(err){
+        req.flash('error','用户注册失败')
         res.redirect('back');
       }else{
+        req.flash('success','用户注册成功')
         res.redirect('/user/signIn')
       }
      })
@@ -24,6 +26,23 @@ router.post('/signUp',function(req,res){
 router.get('/signIn',function(req,res){
     res.render('user/signIn',{title:"登录"})
 });
+router.post('/signIn',function(req,res){
+    //post 返回值用body 接收；
+     let user = req.body;
+     console.log(user) 
+     User.findOne(user,function(err,doc){
+        if(err){
+            res.redirect('back');
+        }else if(doc){
+            //向会话对象中写入属性 user 
+            console.log(doc)
+            req.session.user = doc;
+            res.redirect('/');
+        }else{
+            res.redirect('back');
+        }
+     });
+})
 router.get('/signOut',function(req,res){
     res.render('user/signOut',{title:"登出"})
 });

@@ -5,6 +5,7 @@ let router = express.Router();
 router.get('/',function(req,res){
     // res.send('首页');
     // 路由是相对的路径，相对于模板根目录
-    res.render('index',{title:'首页'})
+    console.log(req.session.user);
+    res.render('index',{title:'首页',user:req.session.user})
 });
 module.exports = router;
