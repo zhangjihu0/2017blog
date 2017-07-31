@@ -6,6 +6,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="css/style.css" rel="stylesheet">
         <link rel='stylesheet' href='/bootstrap/dist/css/bootstrap.css' />
+        <style>
+            img{
+                height:30px;
+                width: 30px;
+                border:1px solid white ;
+                border-radius: 50%;
+
+            }
+        </style>
     </head>
     <body>
         <nav class="navbar navbar-inverse">
@@ -29,8 +38,29 @@
                         <%}%>
                        
                     </ul>
+                    <%if(user){%>
+                        <ul class="nav navbar-nav pull-right">
+                            <li>
+                                <a href="">
+                                    <img src="<%=user.avatar%>" alt="">
+                                    <%=user.username%>
+                                </a>
+                            </li>
+                        </ul> 
+                    <%}%>
                 </div>
             </div>
-           
         </nav>
         <div class="container">
+            <%if(success){%>
+                <div class="alert alert-success">
+                    <%=success%>
+                </div>
+            <%}else if(error){%>
+                <div class="alert alert-danger">
+                    <%=error%>
+                </div>
+            <%}%>
+            </div>
+       
+        
