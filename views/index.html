@@ -1,5 +1,25 @@
 <%- include include/header.html%>
-          首页   
+       <%articles.forEach(function(article){%>
+                <div class="media-left">
+                    <div>
+                        <a href="">
+                            <img class="media-object" src="<%=article.user.avatar%>" alt="article.user.username">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h3 class="media-heading">
+                            <a href="/article/detail/<%=article._id%>">
+                                <%=article.title%>
+                            </a>
+                        </h3>
+                        <p><%=article.content%></p>
+                        <p>发表时间：<%=article.creatAt.toLocaleString()%>|作者:</p>
+                    </div>
+                </div>
+            <%})%>
+
+
+
 <%- include include/footer.html%>
           
        

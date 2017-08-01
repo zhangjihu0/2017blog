@@ -1,4 +1,5 @@
 let mongoose = require('mongoose');
+mongoose.Promise=Promise
 let ObjectId = mongoose.Schema.Types.ObjectId;
 //链接收据库
 mongoose.connect('mongodb://127.0.0.1/201701blog');

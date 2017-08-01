@@ -18,6 +18,19 @@ router.post('/add',function(req,res){
         }
     })
 });
-
+router.get('/detail/:_id',function(req,res){
+    //:id获取方式params,?query,post:body
+    let _id = req.params._id;
+    console.log(_id)
+    Article.findById(_id,function(err,article){
+        if(err){
+            req.flash('error',err);
+            res.redirect('back')
+        }else{
+            console.log(article)
+            res.render('article/detail',{title:'文章详情',article})
+        }
+    })
+});
 //module model
 module.exports = router;
