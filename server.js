@@ -2,8 +2,10 @@ let express = require('express')
 let path  = require('path')
 let bodyParser = require('body-parser')
 let session = require('express-session')
+let MongoStore = require('connect-mongo')(session);
 let flash = require('connect-flash')//一闪而过，依赖session
 let app  = express();
+console.log(require('./config.js'))
 app.set('view engine','html');
 //将相对路径转化为绝对路径； 
 app.set('views',path.resolve('views'));
@@ -20,6 +22,9 @@ app.use(session({
         maxAge:3600*1000//制定cookie过期时间；
     },
     saveUninitialized:true,//保存未初始化的session
+    store:new MongoStore({
+        url:require('./config.js').dbUrl
+    })
 }));
 app.use(flash());
 //依赖session so 放在session 后面，flash(type,msg)  
@@ -35,6 +40,7 @@ let article = require('./routes/article')
 app.use(function(req,res,next){
     //真正渲染模板的是res.locals,render.users会覆盖locals
    res.locals.user = req.session.user;
+   res.locals.keyword = '';
    //flash的功能是读完一次就销毁，清空数据;
    res.locals.success = req.flash('success').toString();
    res.locals.error = req.flash('error').toString();

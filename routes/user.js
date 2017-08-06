@@ -8,8 +8,6 @@ let router = express.Router();
 //实现提交用户路由 post  /user/signup
 //在路由中获取请求体，然后把此用户信息保存到数据库中
 //保护完毕后跳转到登录页；
-
-
 router.get('/signUp',checkNotLogin,function(req,res){
     res.render('user/signUp',{title:"注册"})
 });
