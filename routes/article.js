@@ -45,16 +45,22 @@ router.post('/update/:_id',function(req,res){
     let _id = req.params._id;
     let article = req.body;
     Article.update({_id},req.body,function(err,result){
+            req.flash('success','文章更新传成功');
+            res.redirect('/article/detail/'+_id);
+        })
+})
+router.get('/delete/:_id',function(req,res){
+    let _id = req.params._id;//打算删除的文章ID
+    console.log(_id)
+    Article.remove({_id},function(err,result){
         if(err){
             req.flash('error',err);
             res.redirect('back');
         }else{
-            req.flash('success','文章更新传成功');
-            res.redirect('/article/detail/'+_id);
+            req.flash('success','删除文章成功');
+                    res.redirect('/') 
         }
-    });
-    
-
+    })
 })
 //module model
 module.exports = router;
